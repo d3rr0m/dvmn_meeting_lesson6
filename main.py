@@ -31,12 +31,12 @@ def get_rating(password):
     for check in check_list:
         if check(password):
             rating += 2
-    reply.set_text('Рейтинг пароля: %s' % rating)
+    return rating
 
 
 def on_ask_change(edit, new_edit_text):
-    rating = get_rating(new_edit_text)
-    reply.set_text('Рейтинг пароля: %s' % rating)
+  rating = get_rating(new_edit_text)
+  reply.set_text('Рейтинг пароля: %s' % rating)
 
 
 def main():
@@ -45,8 +45,6 @@ def main():
     menu = urwid.Filler(menu, valign='top')
     urwid.connect_signal(password, 'change', on_ask_change)
     urwid.MainLoop(menu).run()
-    rating = get_rating(password)
-    print(rating)
        
 
 if __name__ == '__main__':
