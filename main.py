@@ -34,7 +34,7 @@ def get_rating(password):
     reply.set_text('Рейтинг пароля: %s' % rating)
 
 
-def on_ask_change(new_edit_text):
+def on_ask_change(edit, new_edit_text):
     rating = get_rating(new_edit_text)
     reply.set_text('Рейтинг пароля: %s' % rating)
 
