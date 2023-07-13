@@ -27,12 +27,14 @@ def has_symbol(password):
 
 def get_rating(password):
     rating = 0
-    check_list = (has_digit,
-                  is_very_long,
-                  has_letters,
-                  has_upper_letters,
-                  has_lower_letters,
-                  has_symbol)
+    check_list = (
+        has_digit,
+        is_very_long,
+        has_letters,
+        has_upper_letters,
+        has_lower_letters,
+        has_symbol,
+    )
 
     for check in check_list:
         if check(password):
@@ -45,14 +47,10 @@ def on_ask_change(edit, new_edit_text):
     reply.set_text('Рейтинг пароля: %s' % rating)
 
 
-def main():
+if __name__ == '__main__':
     password = urwid.Edit('Введите пароль', mask='X')
+    reply = urwid.Text('')
     menu = urwid.Pile([password, reply])
     menu = urwid.Filler(menu, valign='top')
     urwid.connect_signal(password, 'change', on_ask_change)
     urwid.MainLoop(menu).run()
-
-
-if __name__ == '__main__':
-    reply = urwid.Text('')
-    main()
